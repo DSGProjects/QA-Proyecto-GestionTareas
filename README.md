@@ -124,6 +124,6 @@ python consultas.py
 
 ---
 
-## 👩‍💻 Autora
+## 👩‍💻 Autorgit commit -m "proyecto QA completo: FastAPI, Postman, Karate, SQLite"
 **David Fernando Solano Garcia** - Analista QA Junior  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/david-fernando-solano-garcia-840230348)
