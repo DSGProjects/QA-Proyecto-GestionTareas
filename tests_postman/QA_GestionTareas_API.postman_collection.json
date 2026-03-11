@@ -1,0 +1,350 @@
+{
+  "info": {
+    "_postman_id": "d9afbe34-fad1-4adc-a280-24236acceaa6",
+    "name": "QA_GestionTareas_API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47144757",
+    "_collection_link": "https://go.postman.co/collection/47144757-d9afbe34-fad1-4adc-a280-24236acceaa6?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Listar todas las tareas",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"status code 200\", function(){\r",
+              "    pm.expect(pm.response.code).to.equal(200)\r",
+              "});\r",
+              "\r",
+              "pm.test(\"devuleve un array\",function(){\r",
+              "    pm.expect(response).to.be.an(\"array\")\r",
+              "});\r",
+              "\r",
+              "pm.test(\"id posicion 0 es igual a 1\", function(){\r",
+              "    pm.expect(response[0].id).to.equal(1)\r",
+              "});\r",
+              "\r",
+              "pm.test(\"id posicion 1 es igual a 2\",function(){\r",
+              "    pm.expect(response[1].id).to.equal(2)\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/posts",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "posts"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Crear_Tarea_Valida",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"statuts 201\",function(){\r",
+              "    pm.expect(pm.response.code).to.equal(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"tiempo de repsuesta menor a 500ms\",function(){\r",
+              "    pm.expect(pm.response.responseTime).to.below(500);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"devuleve id\",function(){\r",
+              "    pm.expect(response).to.have.property(\"id\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"title devuelve lo esperado: QA_API_Test_Create_Task_Valid\",function(){\r",
+              "    pm.expect(response.title).to.equal(\"QA_API_Test_Create_Task_Valid\");\r",
+              "});\r",
+              "\r",
+              "pm.environment.set(\"post_id\",response.id);"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"QA_API_Test_Create_Task_Valid\",\r\n  \"body\": \"Smoke test for task creation endpoint\",\r\n  \"userId\": 1\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/posts",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "posts"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post_By_ID_Not_Found",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Status code es 200\", function () {\r",
+              "    pm.expect(pm.response.code).to.equal(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Devuelve mensaje de error\", function () {\r",
+              "    pm.expect(response).to.have.property(\"error\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Mensaje correcto\", function () {\r",
+              "    pm.expect(response.error).to.equal(\"Post not found\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"QA_API_Test_Create_Task_Valid\",\r\n  \"body\": \"Smoke test for task creation endpoint\",\r\n  \"userId\": 1\r\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/posts/{{post_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "posts",
+            "{{post_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post_By_ID_Valid",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code es 200 en delete\", function () {\r",
+              "    pm.expect(pm.response.code).to.equal(200);\r",
+              "});\r",
+              "\r",
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Mensaje de eliminado correcto\", function () {\r",
+              "    pm.expect(response.message).to.equal(\"Post deleted\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/posts/{{post_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "posts",
+            "{{post_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Post_By_ID_Valid",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"status 200\",function(){\r",
+              "    pm.expect(pm.response.code).to.equal(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"el id coincide con el creado\",function(){\r",
+              "    pm.expect(response.id).to.equal(Number(pm.environment.get(\"post_id\")));\r",
+              "});\r",
+              "\r",
+              "pm.test(\"tiene title\",function(){\r",
+              "    pm.expect(response).to.have.property(\"title\");\r",
+              "})"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/posts/{{post_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "posts",
+            "{{post_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update_Post_By_ID_Valid",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"status 200\",function(){\r",
+              "    pm.expect(pm.response.code).to.equal(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"El id sigue siendo el mismo\", function () {\r",
+              "    pm.expect(response.id).to.equal(Number(pm.environment.get(\"post_id\")));\r",
+              "});\r",
+              "\r",
+              "pm.test(\"El title fue actualizado\", function () {\r",
+              "    pm.expect(response.title).to.equal(\"Updated Title\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"Updated Title\",\r\n    \"body\": \"Updated Body\",\r\n    \"userId\": 99\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/posts/{{post_id}}",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "posts",
+            "{{post_id}}"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update_Post_By_ID_Not_Found",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "\r",
+              "pm.test(\"Status code es 200\", function () {\r",
+              "    pm.expect(pm.response.code).to.equal(200);\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Devuelve mensaje de error\", function () {\r",
+              "    pm.expect(response).to.have.property(\"error\");\r",
+              "});\r",
+              "\r",
+              "pm.test(\"Mensaje correcto\", function () {\r",
+              "    pm.expect(response.error).to.equal(\"Post not found\");\r",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"title\": \"Updated Title\",\r\n    \"body\": \"Updated Body\",\r\n    \"userId\": 99\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/posts/99999",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "posts",
+            "99999"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
