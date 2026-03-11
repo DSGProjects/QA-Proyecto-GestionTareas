@@ -125,5 +125,5 @@ python consultas.py
 ---
 
 ## 👨‍💻 Autor
-**David Fernando Solano Garcia** - Analista QA Junior  
+**David Fernando Solano Garcia** - Analista de Datos & QA Junior  
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/david-fernando-solano-garcia-840230348)
