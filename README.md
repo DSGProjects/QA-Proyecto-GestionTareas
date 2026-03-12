@@ -1,6 +1,7 @@
-# QA Proyecto - Gestión de Tareas
+# QA Automation Project – Gestión de Tareas API
 
-Proyecto de automatización de pruebas QA sobre una API REST construida con FastAPI. Incluye pruebas con Postman, automatización con Karate y registro de resultados en SQLite.
+Proyecto de pruebas QA sobre una API REST desarrollada con FastAPI.  
+Incluye pruebas manuales con Postman, automatización con Karate Framework y registro de resultados en SQLite.
 
 ---
 
@@ -16,23 +17,35 @@ Proyecto de automatización de pruebas QA sobre una API REST construida con Fast
 
 ## Estructura del proyecto
 
-```
 QA-PROYECTO-GESTIONTAREAS
-├── karate_tests/           → Tests automatizados con Karate
-│   ├── pom.xml
-│   └── src/test/resources/com/qa/posts.feature
-├── qa-api-backend/         → API REST con FastAPI
-│   └── main.py
-├── sql_simulado/           → Base de datos SQLite con resultados
-│   ├── db_resultados.py
-│   ├── consultas.py
-│   ├── queries.sql
-│   └── resultados_tests.db
-├── tests_postman/          → Colección exportada de Postman
-│   ├── QA_GestionTareas_API.postman_collection.json
-│   └── QA_Local.postman_environment.json
+
+├── karate_tests/  
+│   ├── pom.xml  
+│   └── src/test/resources/com/qa/posts.feature  
+
+├── qa-api-backend/  
+│   └── main.py  
+
+├── sql_simulado/  
+│   ├── db_resultados.py  
+│   ├── consultas.py  
+│   ├── queries.sql  
+│   └── resultados_tests.db  
+
+├── tests_postman/  
+│   ├── QA_GestionTareas_API.postman_collection.json  
+│   └── QA_Local.postman_environment.json  
+
 └── venv/
-```
+
+---
+
+## Requisitos
+
+- Python 3
+- Java 17
+- Maven
+- Postman
 
 ---
 
@@ -45,7 +58,10 @@ cd qa-api-backend
 uvicorn main:app --reload
 ```
 
-La API estará disponible en: `http://127.0.0.1:8000`
+La API estará disponible en:  
+http://127.0.0.1:8000
+
+---
 
 ### 2. Correr tests con Karate
 
@@ -55,15 +71,16 @@ mvn test
 ```
 
 El reporte HTML se genera en:
-```
+
 karate_tests/target/karate-reports/karate-summary.html
-```
+
+---
 
 ### 3. Importar colección en Postman
 
-1. Abrir Postman
-2. Import → seleccionar `QA_GestionTareas_API.postman_collection.json`
-3. Import → seleccionar `QA_Local.postman_environment.json`
+1. Abrir Postman  
+2. Import → seleccionar `QA_GestionTareas_API.postman_collection.json`  
+3. Import → seleccionar `QA_Local.postman_environment.json`  
 4. Seleccionar environment `QA_Local`
 
 ---
@@ -108,7 +125,9 @@ karate_tests/target/karate-reports/karate-summary.html
 
 ## Base de datos SQLite
 
-Los resultados de los tests se registran en `resultados_tests.db`. Para consultar:
+Los resultados de los tests se registran en `resultados_tests.db`.
+
+Para consultar:
 
 ```bash
 cd sql_simulado
@@ -119,12 +138,16 @@ python consultas.py
 
 ## Notas
 
-- La API guarda los datos en memoria, se reinician al apagar el servidor.
+- La API guarda los datos en memoria.
+- Los datos se reinician al apagar el servidor.
 - Levantar la API antes de correr cualquier test.
 
 ---
 
 ## Autor
-**David Fernando Solano Garcia** - Analista de Datos & QA Junior
 
-LinkedIn: https://www.linkedin.com/in/david-fernando-solano-garcia-840230348
+**David Fernando Solano Garcia**  
+Analista de Datos & QA Junior  
+
+LinkedIn:  
+https://www.linkedin.com/in/david-fernando-solano-garcia-840230348
