@@ -1,10 +1,10 @@
-# 🧪 QA Proyecto - Gestión de Tareas
+# QA Proyecto - Gestión de Tareas
 
 Proyecto de automatización de pruebas QA sobre una API REST construida con FastAPI. Incluye pruebas con Postman, automatización con Karate y registro de resultados en SQLite.
 
 ---
 
-## 🛠️ Tecnologías utilizadas
+## Tecnologías utilizadas
 
 - **Python + FastAPI** → API REST backend
 - **Postman** → Pruebas manuales y exploración de endpoints
@@ -14,7 +14,7 @@ Proyecto de automatización de pruebas QA sobre una API REST construida con Fast
 
 ---
 
-## 📁 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 QA-PROYECTO-GESTIONTAREAS
@@ -36,7 +36,7 @@ QA-PROYECTO-GESTIONTAREAS
 
 ---
 
-## 🚀 Cómo correr el proyecto
+## Cómo correr el proyecto
 
 ### 1. Levantar la API
 
@@ -68,7 +68,7 @@ karate_tests/target/karate-reports/karate-summary.html
 
 ---
 
-## 📋 Endpoints de la API
+## Endpoints de la API
 
 | Método | Endpoint | Descripción |
 |--------|----------|-------------|
@@ -80,7 +80,7 @@ karate_tests/target/karate-reports/karate-summary.html
 
 ---
 
-## 🧪 Scenarios de prueba en Karate
+## Scenarios de prueba en Karate
 
 | # | Scenario | Resultado esperado |
 |---|----------|-------------------|
@@ -93,7 +93,7 @@ karate_tests/target/karate-reports/karate-summary.html
 
 ---
 
-## 📸 Resultados
+## Resultados
 
 ### Karate - 6/6 tests pasando
 ![Karate Tests](capturas/karate-tests.png)
@@ -106,7 +106,7 @@ karate_tests/target/karate-reports/karate-summary.html
 
 ---
 
-## 💾 Base de datos SQLite
+## Base de datos SQLite
 
 Los resultados de los tests se registran en `resultados_tests.db`. Para consultar:
 
@@ -117,13 +117,14 @@ python consultas.py
 
 ---
 
-## 📌 Notas
+## Notas
 
 - La API guarda los datos en memoria, se reinician al apagar el servidor.
 - Levantar la API antes de correr cualquier test.
 
 ---
 
-## 👨‍💻 Autor
-**David Fernando Solano Garcia** - Analista de Datos & QA Junior  
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-blue?logo=linkedin)](https://www.linkedin.com/in/david-fernando-solano-garcia-840230348)
+## Autor
+**David Fernando Solano Garcia** - Analista de Datos & QA Junior
+
+LinkedIn: https://www.linkedin.com/in/david-fernando-solano-garcia-840230348
