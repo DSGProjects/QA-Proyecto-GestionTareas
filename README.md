@@ -131,3 +131,5 @@ python consultas.py
 **David Fernando Solano Garcia** - Analista de Datos & QA Junior
 
 LinkedIn: https://www.linkedin.com/in/david-fernando-solano-garcia-840230348
+
+Última actualización de prueba.
